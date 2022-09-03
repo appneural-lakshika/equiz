@@ -32,7 +32,7 @@ export class EditCategoryComponent implements OnInit {
     this.activatedRoute.params.subscribe(data => {
       if (data["key"]) {
         this.key = data["key"];
-        this.categoryService.get(data["key"]).subscribe(data => {
+        this.categoryService.get(data["key"]).subscribe((data: any) => {
           this.createForm(data);
         });
       }

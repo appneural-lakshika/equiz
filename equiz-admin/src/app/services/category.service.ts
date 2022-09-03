@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { Category } from "../models/category.model";
@@ -7,18 +8,23 @@ import { mapToModel } from "../shared/utils/app.mapper";
   providedIn: "root"
 })
 export class CategoryService {
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFireDatabase, private httpClient: HttpClient) {}
 
   add(category: Category) {
-    this.db.list(`categories/`).push(category);
+    console.log(category);
+    this.httpClient.post('http://localhost:3000/subject', category).subscribe((data) => {
+      console.log(data);
+    })
+    // this.db.list(`categories/`).push(category);
   }
 
   get(key: string) {
-    return this.db.object<Category>(`categories/${key}`).valueChanges();
+    return this.httpClient.get('http://localhost:3000/subject');
+    // return this.db.object<Category>(`categories/${key}`).valueChanges();
   }
 
   getAll() {
-    return mapToModel(this.db.list<Category>("/categories").snapshotChanges());
+    return this.httpClient.get('http://localhost:3000/subject');
   }
 
   getActives() {

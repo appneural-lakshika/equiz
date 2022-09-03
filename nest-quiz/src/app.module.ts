@@ -26,7 +26,8 @@ import { QuestionService } from './question/question.service';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://ajayprajapat:bvqtJJLgnG2sS8dE@cluster0.toa6t.mongodb.net/quiz',
+      // 'mongodb+srv://ajayprajapat:bvqtJJLgnG2sS8dE@cluster0.toa6t.mongodb.net/quiz',
+      'mongodb://localhost:27017/quiz',
     ),
     MongooseModule.forFeature([
       { name: 'User', schema: UserSchema },

@@ -25,21 +25,39 @@ export class AuthService {
   }
 
   logIn(email: string, password: string) {
-    return this.afAuth.auth
-      .signInWithEmailAndPassword(email, password)
-      .then(result => {
-        localStorage.setItem("currentUser", JSON.stringify(result.user));
-        this.loggedIn.next(true);
-        this.router.navigate(["/dashboard"]);
-        this.snackBar.open(
-          "Successfully entered!",
-          null,
-          environment.snackBarConfig
-        );
-      })
-      .catch(error => {
-        alert(error.message);
-      });
+    if(email === 'admin@equiz.com' && password === 'admin@equiz.com')  {
+      localStorage.setItem("currentUser", JSON.stringify('email'));
+      this.loggedIn.next(true);
+      this.router.navigate(["/dashboard"]);
+      this.snackBar.open(
+        "Successfully entered!",
+        null,
+        environment.snackBarConfig
+      );
+      return true;
+    } else {
+      this.snackBar.open(
+        "Not Successfully entered!",
+        null,
+        environment.snackBarConfig
+      );
+      return false
+    }
+    // return this.afAuth.auth
+    //   .signInWithEmailAndPassword(email, password)
+    //   .then(result => {
+    //     localStorage.setItem("currentUser", JSON.stringify(result.user));
+    //     this.loggedIn.next(true);
+    //     this.router.navigate(["/dashboard"]);
+    //     this.snackBar.open(
+    //       "Successfully entered!",
+    //       null,
+    //       environment.snackBarConfig
+    //     );
+    //   })
+    //   .catch(error => {
+    //     alert(error.message);
+    //   });
   }
 
   public get isLoggedIn() {

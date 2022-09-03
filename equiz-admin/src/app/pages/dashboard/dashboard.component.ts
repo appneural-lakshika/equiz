@@ -113,7 +113,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getCategoryCount() {
-    this.categoryService.getAll().subscribe(data => {
+    this.categoryService.getAll().subscribe((data: any) => {
       this.categoryCount = data.length;
     });
   }

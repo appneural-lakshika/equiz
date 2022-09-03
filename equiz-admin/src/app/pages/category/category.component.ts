@@ -11,7 +11,7 @@ import { ConfirmModalComponent } from "src/app/shared/components/confirm-modal/c
 @Component({
   selector: "app-category",
   templateUrl: "./category.component.html",
-  styleUrls: ["./category.component.css"]
+  styleUrls: ["./category.component.css"],
 })
 export class CategoryComponent implements OnInit {
   category: Category[];
@@ -28,34 +28,28 @@ export class CategoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getCategories();
-  }
+    setTimeout(() => {
+      this.categoryService.getAll().subscribe((data: any) => {
+        this.dataSource = new MatTableDataSource(data);
 
-  getCategories() {
-    this.categoryService.getAll().subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
-
-      setTimeout(() => {
         this.dataSource.filterPredicate = (
           data: { name: string },
           filterValue: string
-        ) =>
-          data.name
-            .trim()
-            .toLowerCase()
-            .indexOf(filterValue) !== -1;
+        ) => data.name.trim().toLowerCase().indexOf(filterValue) !== -1;
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-      }, 100);
 
-      this.isLoading = true;
-    });
+        this.isLoading = true;
+      });
+    }, 1000);
   }
+
+  getCategories() {}
 
   openDialog(key) {
     const dialogRef = this.dialog.open(ConfirmModalComponent);
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.onRemove(key);
       }
