@@ -1,0 +1,37 @@
+<p>
+    <mat-toolbar color="primary" class="mb-6">
+        <span>Quiz Result</span>
+    </mat-toolbar>
+</p>
+<div class="discription">
+    <div>
+        <div class="que_head">Candidate Details</div>
+        <div class="mx-10 mb-10">
+            <div class="pt-1">Candidate Name : {{name}}</div>
+            <div class="top-padding">Quiz Type : {{quizType}} </div>
+            <div class="top-padding">Topic Name : {{topicName}}</div>
+        </div>
+        <div class="que_head">Question Details</div>
+        <div>
+            <div class="mx-10 mb-10">
+                <div class="top-padding">Total Question :{{totalQuestion}}</div>
+                <div class="top-padding">Attempt Question : {{attemptQuestion}}</div>
+                <div class="top-padding">Wong Answer :{{wongAnswer}} </div>
+                <div class="top-padding">Right Answer : {{rightAnswer}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <p>
+        <mat-toolbar color="primary" class="mb-6">
+            <span>SUMMAEY</span>
+        </mat-toolbar>
+    </p>
+
+    <div *ngFor="let que of questions" class="mx-10 mb-6">
+        <div>Q.{{que.Q}} : {{que.question}}</div>
+        <div>Your Answer : {{que.your_ans}}</div>
+        <div>Right Answer : {{que.right_ans}}</div>
+    </div>
+</div>

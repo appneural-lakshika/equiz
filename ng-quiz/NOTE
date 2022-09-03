@@ -1,0 +1,7 @@
+ng g c upcoming-quiz
+ng g c quiz-selection
+ng g c leaderboard
+ng g c quiz
+ng g c result
+ng g c summary
+ng g s quiz

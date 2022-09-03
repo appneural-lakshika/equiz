@@ -1,0 +1,114 @@
+<mat-toolbar>
+  <span>Create Quiz Question</span>
+</mat-toolbar>
+<form (submit)="submit()">
+  <div class="quiz-form" [formGroup]="form" fxLayout="column" *ngIf="subjectNTopics">
+    <mat-form-field appearance="fill">
+      <mat-label>Select a Subject</mat-label>
+      <mat-select #subject >
+        <mat-option [value]="item" *ngFor="let item of subjects">{{item}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Select a Topic</mat-label>
+      <mat-select formControlName="topic" >
+        <mat-option [value]="item._id" *ngFor="let item of subjectNTopics[subject.value]">{{item.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Question</mat-label>
+      <input #question matInput placeholder="Question" value="" formControlName="question">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Option1</mat-label>
+      <input #option1 matInput placeholder="Ex. Pizza" value="" formControlName="option1">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Option2</mat-label>
+      <input #option2 matInput placeholder="Ex. Pizza" value="" formControlName="option2">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Option3</mat-label>
+      <input #option3 matInput placeholder="Ex. Pizza" value="" formControlName="option3">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Option4</mat-label>
+      <input #option4 matInput placeholder="Ex. Pizza" value="" formControlName="option4">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Select an correct option</mat-label>
+      <mat-select formControlName="answer" [disabled]="(option1.value && option2.value && option3.value && option4.value)? false: true">
+        <mat-option [value]="option1.value">Option 1</mat-option>
+        <mat-option [value]="option2.value">Option 2</mat-option>
+        <mat-option [value]="option3.value">Option 3</mat-option>
+        <mat-option [value]="option4.value">Option 4</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary">Submit</button>
+  </div>
+</form>
+
+
+
+
+<!-- <div class="example-container">
+	<form class="example-container" [formGroup]="options">
+		<div class="options">
+		</div>
+
+		<div class="options">
+			<label>Label flotante: </label>
+      <mat-radio-group formControlName="floatLabel">
+        <mat-radio-button value="auto">Auto</mat-radio-button>
+        <mat-radio-button value="always">Always</mat-radio-button>
+        <mat-radio-button value="never">Never</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="options">
+			<label>Apariencia: </label>
+      <mat-radio-group formControlName="apariencia">
+        <mat-radio-button value="legacy">Legacy</mat-radio-button>
+        <mat-radio-button value="standard">standard</mat-radio-button>
+        <mat-radio-button value="fill">Fill</mat-radio-button>
+        <mat-radio-button value="outline">Outline</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </form>
+
+<div>
+  <mat-form-field
+      [hideRequiredMarker]="options.value.hideRequired"
+      [appearance]="options.value.apariencia"
+      [floatLabel]="options.value.floatLabel">
+    <input matInput placeholder="Simple placeholder" required>
+  </mat-form-field>
+
+</div>
+<div>
+  <mat-form-field
+    [floatLabel]="options.value.floatLabel"
+    [appearance]="options.value.apariencia">
+    <mat-label>Both a label and a placeholder</mat-label>
+    <input matInput placeholder="Simple placeholder">
+  </mat-form-field>
+
+</div>
+<div>
+  <mat-form-field
+      [hideRequiredMarker]="options.value.hideRequired"
+      [appearance]="options.value.apariencia"
+      [floatLabel]="options.value.floatLabel">
+    <mat-select required>
+      <mat-option>-- None --</mat-option>
+      <mat-option value="option">Option</mat-option>
+    </mat-select>
+    <mat-label><mat-icon>favorite</mat-icon> <b> Fancy</b> <i> label</i></mat-label>
+  </mat-form-field>
+</div>
+
+<div>
+  {{ options.value | json }}
+</div>
+
+
+</div> -->

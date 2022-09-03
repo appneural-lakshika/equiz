@@ -1,0 +1,12 @@
+<mat-toolbar>
+    <span>Create Subject</span>
+  </mat-toolbar>
+  <form (submit)="submit()">
+    <div class="quiz-form" [formGroup]="form" fxLayout="column">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Subject</mat-label>
+            <input matInput formControlName="subjectName" placeholder="Enter Your Subject"value="">
+          </mat-form-field>
+      <button type="submit" mat-raised-button color="primary">Submit</button>
+    </div>
+  </form>

@@ -1,0 +1,18 @@
+<mat-toolbar>
+    <span>Create Quiz Topic</span>
+</mat-toolbar>
+<form (submit)="submit()">
+    <div class="quiz-form" [formGroup]="form" fxLayout="column">
+        <mat-form-field appearance="fill">
+            <mat-label>Choose Subject</mat-label>
+            <mat-select formControlName="subject">
+                <mat-option *ngFor="let subject of subjects" [value]="subject._id">{{subject.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Enter Your Topic</mat-label>
+            <input #option1 matInput placeholder="Enter Your Topic" value="" formControlName="topicName">
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary">Submit</button>
+    </div>
+</form>

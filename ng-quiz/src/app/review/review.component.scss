@@ -1,0 +1,30 @@
+.quiz-container {
+  padding: 100px;
+  .options-container {
+      height: 100%;
+      .option{
+          // background-color: gray;
+          margin: 5px;
+          padding: 20px;
+      }
+
+  }
+  .quiz-index {
+    // margin: 0 10px;
+    background-color: red;
+    width: 100%;
+    margin: 5px;
+    max-width: 100px;
+  }
+  .pagination {
+    width: 100%;
+  }
+  .correct-answer {
+    background-color: green;
+  }
+
+  .wrong-answer {
+    background-color: red;
+  }
+}
+
