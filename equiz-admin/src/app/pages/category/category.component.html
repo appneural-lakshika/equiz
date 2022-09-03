@@ -46,10 +46,10 @@
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
           <div class="example-button-row">
-            <button mat-raised-button color="primary" [routerLink]="[ '/category/edit-category', element.key]">
+            <button mat-raised-button color="primary" [routerLink]="[ '/category/edit-category', element._id]">
               EDIT
             </button>
-            <button mat-raised-button color="warn" (click)="openDialog(element.key)">
+            <button mat-raised-button color="warn" (click)="openDialog(element._id)">
               DELETE
             </button>
           </div>

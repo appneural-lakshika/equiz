@@ -54,7 +54,7 @@ export class EditQuizComponent implements OnInit {
   }
 
   getCategories() {
-    this.categoryService.getActives().subscribe(data => {
+    this.categoryService.getActives().subscribe((data: any) => {
       this.categories = data;
     });
   }

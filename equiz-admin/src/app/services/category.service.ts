@@ -28,20 +28,18 @@ export class CategoryService {
   }
 
   getActives() {
-    return mapToModel(
-      this.db
-        .list<Category>("/categories", ref =>
-          ref.orderByChild("status").equalTo(true)
-        )
-        .snapshotChanges()
-    );
+    return this.httpClient.get('http://localhost:3000/subject');
   }
 
-  update(category: Category, key: string) {
-    this.db.object(`categories/${key}`).update(category);
+  update(category: Category, _id: string) {
+    console.log(category, _id);
+    return this.httpClient.put('http://localhost:3000/subject/'+_id, category).subscribe(() => {});
+    // this.db.object(`categories/${key}`).update(category);
   }
 
-  delete(key: string) {
-    this.db.object(`categories/${key}`).remove();
+  delete(_id: string) {
+    console.log(_id);
+    return this.httpClient.delete('http://localhost:3000/subject/'+_id).subscribe(() => {});
+    // this.db.object(`categories/${key}`).remove();
   }
 }
