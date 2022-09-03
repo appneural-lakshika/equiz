@@ -22,6 +22,9 @@ import { ResultController } from './result/result.controller';
 import { ResultService } from './result/result.service';
 import { QuestionController } from './question/question.controller';
 import { QuestionService } from './question/question.service';
+import { LanguageSchema } from './@schemas/language.schema';
+import { LanguageController } from './language/language.controller';
+import { LanguageService } from './language/language.service';
 
 @Module({
   imports: [
@@ -34,6 +37,7 @@ import { QuestionService } from './question/question.service';
       { name: 'Topic', schema: TopicSchema },
       { name: 'Summary', schema: SummarySchema },
       { name: 'Subject', schema: SubjectSchema },
+      { name: 'Language', schema: LanguageSchema },
       { name: 'Quiz', schema: QuizSchema },
       { name: 'Practice-Result', schema: PracticeResultSchema },
       { name: 'Live-Result', schema: LiveResultSchema },
@@ -48,6 +52,7 @@ import { QuestionService } from './question/question.service';
     QuizController,
     ResultController,
     QuestionController,
+    LanguageController,
   ],
   providers: [
     AppService,
@@ -57,6 +62,7 @@ import { QuestionService } from './question/question.service';
     QuizService,
     ResultService,
     QuestionService,
+    LanguageService,
   ],
 })
 export class AppModule {}
