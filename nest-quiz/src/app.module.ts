@@ -25,9 +25,7 @@ import { QuestionService } from './question/question.service';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      "mongodb+srv://ajayprajapat:NUQ5XcaetzwvjEDp@cluster0.toa6t.mongodb.net/test1"
-    ),
+    MongooseModule.forRoot("mongodb+srv://ajayprajapat:bvqtJJLgnG2sS8dE@cluster0.toa6t.mongodb.net/quiz"),
     MongooseModule.forFeature([
       { name: "User", schema: UserSchema },
       { name: "Topic", schema: TopicSchema },
@@ -58,4 +56,4 @@ import { QuestionService } from './question/question.service';
     QuestionService,
   ],
 })
-export class AppModule {}
+export class AppModule { }
