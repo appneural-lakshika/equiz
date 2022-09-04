@@ -30,7 +30,7 @@ export class UserComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService.getAll().subscribe(data => {
+    this.userService.getAll().subscribe((data: any) => {
       this.dataSource = new MatTableDataSource(data);
 
       setTimeout(() => {

@@ -2,30 +2,40 @@ import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { mapToModel } from "../shared/utils/app.mapper";
 import { User } from "firebase";
+import { HttpClient } from "@angular/common/http";
+
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService {
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFireDatabase, private httpClient: HttpClient) {}
+
 
   add(user: User) {
-    this.db.list(`users/`).push(user);
+      console.log(user);
+      this.httpClient.post('http://localhost:3000/user', user).subscribe((data: any) => {
+        console.log(data);
+      })
+    // this.db.list(`users/`).push(user);
   }
 
   get(key: string) {
-    return this.db.object<User>(`users/${key}`).valueChanges();
+    return this.httpClient.get('http://localhost:3000/user');
+
+    // return this.db.object<User>(`users/${key}`).valueChanges();
   }
 
   getAll() {
-    return mapToModel(this.db.list<User>("/users").snapshotChanges());
+    return this.httpClient.get('http://localhost:3000/user');
+    // return mapToModel(this.db.list<User>("/users").snapshotChanges());
   }
 
-  update(user: User, key: string) {
-    this.db.object(`users/${key}`).update(user);
-  }
+  // update(user: User, key: string) {
+  //   this.db.object(`users/${key}`).update(user);
+  // }
 
-  delete(key: string) {
-    this.db.object(`users/${key}`).remove();
-  }
+  // delete(key: string) {
+  //   this.db.object(`users/${key}`).remove();
+  // }
 }

@@ -125,7 +125,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getUserCount() {
-    this.userService.getAll().subscribe(data => {
+    this.userService.getAll().subscribe((data: any) => {
       this.userCount = data.length;
     });
   }
