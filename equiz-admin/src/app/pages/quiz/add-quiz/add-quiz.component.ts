@@ -61,7 +61,7 @@ export class AddQuizComponent implements OnInit {
   }
 
   getLanguages() {
-    this.languageService.getActives().subscribe(data => {
+    this.languageService.getActives().subscribe((data: any) => {
       this.languages = data;
     });
   }

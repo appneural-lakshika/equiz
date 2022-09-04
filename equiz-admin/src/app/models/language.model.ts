@@ -1,5 +1,5 @@
 export class Language {
-  key: string;
+  _id?: string;
   name: string;
   status: boolean;
 }

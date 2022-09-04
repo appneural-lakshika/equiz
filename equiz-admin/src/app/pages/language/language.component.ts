@@ -35,7 +35,7 @@ export class LanguageComponent implements OnInit {
   }
 
   getCategories() {
-    this.languageService.getAll().subscribe(data => {
+    this.languageService.getAll().subscribe((data: any) => {
       this.dataSource = new MatTableDataSource(data);
 
       setTimeout(() => {

@@ -12,7 +12,7 @@ export class CategoryService {
 
   add(category: Category) {
     console.log(category);
-    this.httpClient.post('http://localhost:3000/subject', category).subscribe((data) => {
+    this.httpClient.post('http://localhost:3000/subject', category).subscribe((data: any) => {
       console.log(data);
     })
     // this.db.list(`categories/`).push(category);

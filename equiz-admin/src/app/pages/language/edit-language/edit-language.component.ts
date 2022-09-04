@@ -32,7 +32,7 @@ export class EditLanguageComponent implements OnInit {
     this.activatedRoute.params.subscribe(data => {
       if (data["key"]) {
         this.key = data["key"];
-        this.languageService.get(data["key"]).subscribe(data => {
+        this.languageService.get(data["key"]).subscribe((data: any) => {
           this.createForm(data);
         });
       }

@@ -18,4 +18,35 @@ export class LanguageService {
       resolve(createdData);
     });
   }
+  async getLanguage(): Promise<any> {
+    const language = await this.languageModel.find();
+    // const language: any = {
+    //     {
+    //       "_id": "6300dcf71f564c5c8ed1f8ab",
+    //       "name" : "Verbs",
+    //     },
+    //     {
+    //       "_id": "6300dcff1f564c5c8ed1f8ad",
+    //       "name" : "Nouns",
+    //     },
+    // }
+    return new Promise((resolve) => {
+      resolve(language);
+    });
+  }
+
+  async updateLanguage(id: string, data: CreateLanguageDTO): Promise<ISubject> {
+    const language = await this.languageModel.findOneAndUpdate({ _id: id }, data);
+    return new Promise((resolve) => {
+      resolve(language);
+    });
+  }
+
+  async deleteLanguage(id: string): Promise<any> {
+    const language = await this.languageModel.deleteOne({ _id: id });
+    return new Promise((resolve) => {
+      resolve(language);
+    });
+  }
+  
 }
