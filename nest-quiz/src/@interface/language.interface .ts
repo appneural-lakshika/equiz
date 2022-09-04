@@ -1,3 +1,3 @@
-export interface ISubject {
+export interface ILanguage {
     name: string;
 }
