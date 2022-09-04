@@ -43,4 +43,7 @@ export class AddLanguageComponent implements OnInit {
       );
     }
   }
+  resetForm() {
+    this.languageForm.reset();
+  }
 }
