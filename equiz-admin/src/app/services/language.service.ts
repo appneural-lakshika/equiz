@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { Language } from "../models/language.model";
@@ -7,22 +8,23 @@ import { mapToModel } from "../shared/utils/app.mapper";
   providedIn: "root"
 })
 export class LanguageService {
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFireDatabase, private httpClient: HttpClient) {}
 
   add(language: Language) {
-    this.db.list(`languages/`).push(language);
+    console.log(language);
+    this.httpClient.post('http://localhost:3000/language', language).subscribe((data) => {
+      console.log(data);
+    })
+    // this.db.list(`categories/`).push(category);
   }
 
   get(key: string) {
-    return this.db.object<Language>(`languages/${key}`).valueChanges();
+    return this.httpClient.get('http://localhost:3000/language');
+    // return this.db.object<Language>(`languages/${key}`).valueChanges();
   }
 
   getAll() {
-    return mapToModel(
-      this.db
-        .list<Language>(`languages`, ref => ref.orderByChild("name"))
-        .snapshotChanges()
-    );
+    return this.httpClient.get('http://localhost:3000/language');
   }
 
   getActives() {
