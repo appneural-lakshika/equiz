@@ -9,8 +9,7 @@
   <div class="quiz-container" fxLayout="row" fxLayoutAlign="start center">
     <div fxLayout="column" style="width: 150px;" fxLayout="column" fxLayoutAlign="center center">
       <button mat-mini-fab [disabled]="page==0" aria-label="Example icon button with a home icon"
-      (click)="page!=0?page = page-1: ''">
-      << </button>
+      (click)="page!=0?page = page-1: ''"> << </button>
         <button class="quiz-index" mat-button aria-label="Example icon button with a home icon"
           *ngFor="let item of quizData.slice(page*noOfQuestionsOnPage, (page+1)*noOfQuestionsOnPage) ; let i = index;"
           (click)="currentQuizIndex=((page*noOfQuestionsOnPage)+i)">

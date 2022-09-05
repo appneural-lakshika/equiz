@@ -22,4 +22,7 @@ export class  CreateQuizDTO {
   
   @ApiProperty()
   insertDate: Date;
+
+  @ApiProperty()
+  datetime: Date;
 }
