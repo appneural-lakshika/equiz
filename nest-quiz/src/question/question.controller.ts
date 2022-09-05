@@ -9,14 +9,19 @@ import { QuestionService } from './question.service';
 export class QuestionController {
     constructor(private readonly questionService: QuestionService) {}
 
-  @Post()
-  async createquestion(@Body() createQuestionDto: CreateQuestionDTO): Promise<IQuestion> {
+  @Post('/:id')
+  async createquestion(@Param('id') id: string, @Body() createQuestionDto: CreateQuestionDTO): Promise<IQuestion> {
     return await this.questionService.createQuestion(createQuestionDto);
   }
 
   @Get()
   async getQuestion(): Promise<IQuestion[]> {
-    return await this.questionService.getQuestion(null);
+    return await this.questionService.getQuestion();
+  }
+
+  @Get('/:id')
+  async getQuizQuestion(@Param('id') quizId: string): Promise<IQuestion[]> {
+    return await this.questionService.getQuestion(quizId);
   }
 
   @Put('/:id')

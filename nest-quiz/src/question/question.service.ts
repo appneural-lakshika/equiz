@@ -20,13 +20,13 @@ async createQuestion(createQuestionDTO: CreateQuestionDTO): Promise<IQuestion> {
     });
   }
 
-  async getQuestion(topics): Promise<IQuestion[]> {
+  async getQuestion(quizId?): Promise<IQuestion[]> {
     let mdQuery;
     
     
-    if(topics) {
+    if(quizId) {
       mdQuery ={
-        topic: { $in : topics.split(',')}
+        quizId
       };
     } else {
       mdQuery ={
