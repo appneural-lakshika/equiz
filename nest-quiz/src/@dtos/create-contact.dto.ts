@@ -7,3 +7,10 @@ export class CreateContactDTO {
   @ApiProperty({ default: 'english' })
   subject: string;
 }
+
+
+
+
+
+
+
