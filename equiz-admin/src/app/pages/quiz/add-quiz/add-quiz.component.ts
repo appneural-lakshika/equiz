@@ -51,6 +51,7 @@ export class AddQuizComponent implements OnInit {
       ]),
       language: new FormControl("", [Validators.required]),
       status: new FormControl("", [Validators.required])
+      datetime: new FormControl("", [Validators.required])
     });
   }
 
