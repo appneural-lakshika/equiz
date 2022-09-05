@@ -7,6 +7,6 @@ export const QuizSchema = new mongoose.Schema({
     description: String,
     language: String,  
     duration: Number,
-    insertDate: Date
-
+    insertDate: Date,
+    datetime: Date
 });
