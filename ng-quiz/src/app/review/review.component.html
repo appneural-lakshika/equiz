@@ -9,7 +9,7 @@
       <mat-radio-group aria-label="Select an option" class="options-container" fxLayout="column"
         [value]="completedQuestions[currentQuizIndex] && completedQuestions[currentQuizIndex].answer? completedQuestions[currentQuizIndex].answer: null">
         <mat-radio-button [disabled]="completedQuestions[currentQuizIndex] && completedQuestions[currentQuizIndex].answer" class="option" [value]="option" [ngClass]="{'correct-answer': quizData[currentQuizIndex].answer === option, 'wrong-answer': isPractice && completedQuestions[currentQuizIndex] && completedQuestions[currentQuizIndex].answer !== quizData[currentQuizIndex].answer && completedQuestions[currentQuizIndex].answer === option && completedQuestions[currentQuizIndex].answer}"
-          *ngFor="let option of quizData[currentQuizIndex].options"
+          *ngFor="let option of quizData[currentQuizIndex].answers"
           >{{option}}
         </mat-radio-button>
       </mat-radio-group>

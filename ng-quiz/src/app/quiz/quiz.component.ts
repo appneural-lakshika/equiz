@@ -25,12 +25,11 @@ export class QuizComponent implements OnInit {
   quizData: any = [];
 
   completedQuestions: any = {};
-
+  // quizData
   constructor(private _httpClient: HttpClient, private router: Router, private activeRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this._httpClient.get('http://localhost:3000/quiz/'+ this.activeRoute.snapshot.params['id']).subscribe((questions: any) => {
-      console.log(questions)
+    this._httpClient.get('http://localhost:3000/question/'+ this.activeRoute.snapshot.params['id']).subscribe((questions: any) => {
       const data = {
         name: 'Quiz Xyz',
         questionSet: questions,
@@ -41,7 +40,7 @@ export class QuizComponent implements OnInit {
         isMinusMarkingRatio: 1 / 3,
       };
       this.name = data.name;
-      this.quizData = data.questionSet;
+      this.quizData = questions;
       this.questionCountDown = data.questionCountDown;
       this.isPractice = true;
       this.perQuestionMarks = data.perQuestionMarks;
@@ -67,9 +66,9 @@ export class QuizComponent implements OnInit {
       this.completedQuestions[questionIndex] = {
         answer,
         duration: this.questionCountDown - this.countDown,
-        isCorrect: this.quizData[questionIndex].answer === answer,
+        isCorrect: this.quizData[questionIndex].answerRight === answer,
       };
-      this.quizData[questionIndex].answer === answer
+      this.quizData[questionIndex].answerRight === answer
         ? this.correctAnswers++
         : this.wrongAnswers++;
       setTimeout(() => {
@@ -86,7 +85,7 @@ export class QuizComponent implements OnInit {
   review() {
     console.log('reviewed')
     localStorage.setItem('completedQuestions', JSON.stringify(this.completedQuestions))
-    this.router.navigate(['/review'])
+    this.router.navigate(['/review', this.activeRoute.snapshot.params['id']])
 
     setTimeout(() => {
       this.router.navigate(['/review'])

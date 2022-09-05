@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-review',
@@ -14,10 +14,10 @@ export class ReviewComponent implements OnInit {
   quizData: any = null;
   @Input() completedQuestions: any;
 
-  constructor(private _httpClient: HttpClient, private router: Router) {}
+  constructor(private _httpClient: HttpClient, private router: Router, private activeRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this._httpClient.get('http://localhost:3000/question').subscribe((questions: any) => {
+    this._httpClient.get('http://localhost:3000/question/'+ this.activeRoute.snapshot.params['id']).subscribe((questions: any) => {
       console.log(questions)
       this.quizData = questions;
     });

@@ -23,7 +23,7 @@ const routes: Routes = [
     component: QuizSelectionComponent,
   },
   {
-    path: 'quiz/:isd',
+    path: 'quiz/:id',
     component: QuizComponent,
   },
   {
@@ -43,7 +43,7 @@ const routes: Routes = [
     component: CreateSubjectComponent,
   },
   {
-    path: 'review',
+    path: 'review/:id',
     component: ReviewComponent,
   },
   {
