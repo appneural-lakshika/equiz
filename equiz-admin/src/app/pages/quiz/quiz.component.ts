@@ -36,7 +36,7 @@ export class QuizComponent implements OnInit {
   }
 
   getQuizes() {
-    this.quizService.getAll().subscribe(data => {
+    this.quizService.getAll().subscribe((data: any) => {
       this.dataSource = new MatTableDataSource(data);
 
       setTimeout(() => {

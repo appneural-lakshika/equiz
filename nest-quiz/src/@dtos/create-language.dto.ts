@@ -2,8 +2,8 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateLanguageDTO {
   @ApiProperty({ default: '' })
-  name: string;
+  email: string;
 
   @ApiProperty({ default: true })
-  status: boolean;
+  subject: string;
 }

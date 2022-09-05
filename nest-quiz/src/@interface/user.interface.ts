@@ -1,8 +1,8 @@
 export interface IUser {
     email: string; 
-    username: string;
-    fistname: string;
-    lastname: string;
+    userName: string;
+    fistName: string;
+    lastName: string;
 
 }
   
