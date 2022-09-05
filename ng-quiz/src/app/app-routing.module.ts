@@ -10,6 +10,7 @@ import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateSubjectComponent } from './quiz/create-subject/create-subject.component';
 import { CreateSubjectTopicComponent } from './quiz/create-subject-topic/create-subject-topic.component';
+import { PracticeQuizComponent } from './practice-quiz/practice-quiz.component';
 
 const routes: Routes = [
   {
@@ -22,8 +23,12 @@ const routes: Routes = [
     component: QuizSelectionComponent,
   },
   {
-    path: 'quiz',
+    path: 'quiz/:isd',
     component: QuizComponent,
+  },
+  {
+    path: 'practice-quiz',
+    component: PracticeQuizComponent,
   },
   {
     path: 'quiz/create-quiz',

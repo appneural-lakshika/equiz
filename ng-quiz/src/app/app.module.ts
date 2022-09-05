@@ -48,6 +48,7 @@ import { CreateSubjectComponent } from './quiz/create-subject/create-subject.com
 import { CreateSubjectTopicComponent } from './quiz/create-subject-topic/create-subject-topic.component';
 import { UserSignupComponent } from './user-signup/user-signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PracticeQuizComponent } from './practice-quiz/practice-quiz.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CreateSubjectTopicComponent,
     UserSignupComponent,
     DashboardComponent,
+    PracticeQuizComponent,
   ],
   imports: [
     BrowserModule,
