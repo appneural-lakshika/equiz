@@ -50,7 +50,7 @@ export class AddQuizComponent implements OnInit {
         Validators.pattern("^[0-9]+$")
       ]),
       language: new FormControl("", [Validators.required]),
-      status: new FormControl("", [Validators.required])
+      status: new FormControl("", [Validators.required]),
       datetime: new FormControl("", [Validators.required])
     });
   }
