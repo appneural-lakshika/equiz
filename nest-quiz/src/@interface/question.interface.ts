@@ -1,8 +1,9 @@
 export interface IQuestion {
-    
     question: string;
     topic: string;
-    options: [string];
-    answer: [string];
+    answers: [string];
+    status: boolean;
+    answerRight: string;
+    answered: string;
 }
   

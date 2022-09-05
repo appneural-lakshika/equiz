@@ -2,14 +2,23 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateQuestionDTO {
   @ApiProperty()
+  quizId: string;
+
+  @ApiProperty()
   question: string;
 
   @ApiProperty()
-    topic: string;
+  topic: string;
 
   @ApiProperty()
-    options: [string];
+  status: boolean;
 
   @ApiProperty()
-    answer: string;
+  answerRight: string;
+
+  @ApiProperty()
+  answered: string;
+
+  @ApiProperty()
+  answers: [string];
 }
