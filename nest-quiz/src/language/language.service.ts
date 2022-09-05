@@ -10,9 +10,7 @@ export class LanguageService {
     @InjectModel('Language') private readonly languageModel: Model<ISubject>,
   ) {}
 
-  async createLanguage(
-    createLanguageDTO: CreateLanguageDTO,
-  ): Promise<ISubject> {
+  async createLanguage(createLanguageDTO: CreateLanguageDTO,): Promise<ISubject> {
     const createdData = await new this.languageModel(createLanguageDTO).save();
     return new Promise((resolve) => {
       resolve(createdData);
@@ -35,8 +33,8 @@ export class LanguageService {
     });
   }
 
-  async updateLanguage(id: string, data: CreateLanguageDTO): Promise<ISubject> {
-    const language = await this.languageModel.findOneAndUpdate({ _id: id }, data);
+  async updateLanguage(id: string, updateLanguageDto): Promise<ISubject> {
+    const language = await this.languageModel.findOneAndUpdate({ _id: id }, updateLanguageDto);
     return new Promise((resolve) => {
       resolve(language);
     });
@@ -48,5 +46,4 @@ export class LanguageService {
       resolve(language);
     });
   }
-  
 }

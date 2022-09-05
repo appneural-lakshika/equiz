@@ -46,7 +46,7 @@ export class EditQuizComponent implements OnInit {
   }
 
   getQuiz(key) {
-    this.quizService.get(key).subscribe(data => {
+    this.quizService.get(key).subscribe((data: any) => {
       this.getCategories();
       this.getLanguages();
       this.createForm(data);

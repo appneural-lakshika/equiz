@@ -43,7 +43,7 @@ export class LanguageService {
   //   );
   // }
   getActives() {
-    return this.httpClient.get('http://localhost:3000/languages');
+    return this.httpClient.get('http://localhost:3000/language');
   }
 
   // update(language: Language, key: string) {
@@ -51,7 +51,7 @@ export class LanguageService {
   // }
   update(languages: Language, _id: string) {
     console.log(languages, _id);
-    return this.httpClient.put('http://localhost:3000/languages/'+_id, languages).subscribe(() => {});
+    return this.httpClient.put('http://localhost:3000/language/'+_id, languages).subscribe(() => {});
     // this.db.object(`categories/${key}`).update(category);
   }
 
@@ -60,7 +60,7 @@ export class LanguageService {
   // }
   delete(_id: string) {
     console.log(_id);
-    return this.httpClient.delete('http://localhost:3000/languages/'+_id).subscribe(() => {});
+    return this.httpClient.delete('http://localhost:3000/language/'+_id).subscribe(() => {});
     // this.db.object(`categories/${key}`).remove();
   }
 

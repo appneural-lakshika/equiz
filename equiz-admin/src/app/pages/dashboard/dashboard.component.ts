@@ -107,7 +107,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getQuizCount() {
-    this.quizService.getAll().subscribe(data => {
+    this.quizService.getAll().subscribe((data: any) => {
       this.quizCount = data.length;
     });
   }

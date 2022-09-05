@@ -45,6 +45,12 @@
         <textarea matInput formControlName="description" placeholder="Description" rows="5"></textarea>
       </mat-form-field>
 
+      <mat-form-field fxFlex>
+        <mat-label>DateTime</mat-label>
+        <input matInput formControlName="datetime" placeholder="DateTime" autocomplete="off">
+        <mat-error *ngIf="quizForm.controls.title.errors?.required">Date & Time is required</mat-error>
+      </mat-form-field>
+
       <mat-checkbox formControlName="status">PUBLISH</mat-checkbox>
 
       <mat-card-actions>

@@ -17,21 +17,21 @@ export class LanguageController {
   constructor(private readonly languageService: LanguageService) {}
 
   @Post()
-  async createSubject(
+  async createLanguage(
     @Body() createLanguageDTO: CreateLanguageDTO,
   ): Promise<ISubject> {
     return await this.languageService.createLanguage(createLanguageDTO);
   }
   @Get()
-  async getSubject(): Promise<any> {
+  async getLanguage(): Promise<any> {
     return await this.languageService.getLanguage();
   }
   @Put('/:id')
-  async updateSubject(
+  async updateLanguage(
     @Param('id') id: string,
-    @Body() updateSubjectDto: CreateLanguageDTO,
+    @Body() updateLanguageDto: CreateLanguageDTO,
   ): Promise<ISubject> {
-    return await this.languageService.updateLanguage(id, updateSubjectDto);
+    return await this.languageService.updateLanguage(id, updateLanguageDto);
   }
   @Delete('/:id')
   async deleteSubject(@Param('id') id: string): Promise<ISubject> {

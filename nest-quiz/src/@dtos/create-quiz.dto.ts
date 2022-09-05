@@ -1,29 +1,25 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class CreateQuizDTO {
+export class  CreateQuizDTO {
 
   @ApiProperty()
-  name: string;
+  title: string;
 
   @ApiProperty()
-  questionSet: [];
+  status: string;
 
   @ApiProperty()
-  scheduleDate: Date;
-
-  @ApiProperty()
-  questionCountdown: Number;
+  category: string;
   
   @ApiProperty()
-  perQuestionMarks: Number;
-
-  @ApiProperty()
-  isMinusMarking: Number;
-
-  @ApiProperty()
-  isMinusMarkingRatio: Number;
+  description: string;
 
   @ApiProperty()
   duration: Number;
 
+  @ApiProperty()
+  language: string;
+  
+  @ApiProperty()
+  insertDate: Date;
 }

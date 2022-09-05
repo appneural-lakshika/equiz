@@ -1,7 +1,14 @@
 export interface IQuiz {
-    name: string;
-    question: string;
-    scheduledate: string;
-    duration: string;
+    title: string;
+    status: string;
+    description: string;
+    category: string;
+    duration: Number;
+    language: string;
+    insertDate: Date;
+
+
+
+
 }
   

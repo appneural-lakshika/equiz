@@ -39,8 +39,8 @@ async createQuestion(createQuestionDTO: CreateQuestionDTO): Promise<IQuestion> {
     });
   }
 
-  async updateQuestion(id: string, data: CreateQuestionDTO): Promise<IQuestion> {
-    const question = await this.questionModel.findOneAndUpdate({ _id: id }, data);
+  async updateQuestion(id: string, updateQuestionDto: CreateQuestionDTO): Promise<IQuestion> {
+    const question = await this.questionModel.findOneAndUpdate({ _id: id }, updateQuestionDto);
     return new Promise((resolve) => {
       resolve(question);
     });
