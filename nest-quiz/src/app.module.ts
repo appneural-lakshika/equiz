@@ -30,7 +30,7 @@ import { LanguageService } from './language/language.service';
   imports: [
     MongooseModule.forRoot(
       // 'mongodb+srv://ajayprajapat:bvqtJJLgnG2sS8dE@cluster0.toa6t.mongodb.net/quiz',
-      'mongodb://64.227.166.146:25290/equiz',
+      'mongodb://64.227.166.146:25290/equiz1',
     ),
     MongooseModule.forFeature([
       { name: 'User', schema: UserSchema },

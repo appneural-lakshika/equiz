@@ -40,9 +40,9 @@ export class EditQuestionComponent implements OnInit {
   }
 
   getQuestionDetail(quizKey, key) {
-    this.questionService.get(quizKey, key).subscribe(data => {
+    this.questionService.get(quizKey, key).subscribe((data: any) => {
       data.forEach(element => {
-        if (element.key == key) {
+        if (element._id == key) {
           this.createForm(element as Question);
           this.correctAnswer = element.answerRight;
         }
@@ -62,7 +62,7 @@ export class EditQuestionComponent implements OnInit {
   onQuestionFormSubmit(values): void {
     if (this.questionForm.valid) {
       var question = values as Question;
-      this.questionService.update(question, this.quizKey, this.key);
+      this.questionService.update(question, this.key);
       this.router.navigateByUrl(`question/${this.quizKey}`);
       //this.resetForm();
     }

@@ -20,25 +20,25 @@ export class ResultService {constructor(
     });
   }
 
-  async getLiveResult(): Promise<IResultLive[]> {
-    const result = await this.liveResultModel.find();
+  async getLiveResult(quizId): Promise<IResultLive[]> {
+    const result = await this.liveResultModel.find({quizId}).sort({'score':-1}).populate(['uId', 'quizId']);
     return new Promise((resolve) => {
       resolve(result);
     });
   }
 
-  //practice result
-  async createPracticeResult(createResultDTO: CreateResultDTO[]): Promise<IResultPractice[]> {
-    const createdData = await this.practiceResultModel.insertMany(createResultDTO);
-    return new Promise((resolve) => {
-      resolve(createdData);
-    });
-  }
+  // //practice result
+  // async createPracticeResult(createResultDTO: CreateResultDTO[]): Promise<IResultPractice[]> {
+  //   const createdData = await this.practiceResultModel.insertMany(createResultDTO);
+  //   return new Promise((resolve) => {
+  //     resolve(result);
+  //   });
+  // }
 
-  async getPracticeResult(): Promise<IResultPractice[]> {
-    const result = await this.practiceResultModel.find();
-    return new Promise((resolve) => {
-      resolve(result);
-    });
-  }
+  // async getPracticeResult(): Promise<IResultPractice[]> {
+  //   const result = await this.practiceResultModel.find();
+  //   return new Promise((resolve) => {
+  //     resolve(result);
+  //   });
+  // }
 }

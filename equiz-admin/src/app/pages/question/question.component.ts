@@ -39,7 +39,7 @@ export class QuestionComponent implements OnInit {
   }
 
   getQuestions(quizKey: string) {
-    this.questionService.getAll(quizKey).subscribe(data => {
+    this.questionService.getAll(quizKey).subscribe((data: any) => {
       this.dataSource = new MatTableDataSource(data);
 
       setTimeout(() => {
@@ -74,7 +74,7 @@ export class QuestionComponent implements OnInit {
   }
 
   onRemove(key: string) {
-    this.questionService.delete(this.quizKey, key);
+    this.questionService.delete(key);
   }
 
   applyFilter(filterValue: string) {

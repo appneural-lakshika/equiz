@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { Quiz } from "../models/quiz.model";
-import { mapToModel } from "../shared/utils/app.mapper";
+// import { mapToModel } from "../shared/utils/app.mapper";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable({
@@ -37,7 +37,7 @@ export class QuizService {
 
   delete(_id: string) {
     console.log(_id);
-    return this.httpClient.delete('http://localhost:3000/subject/'+_id).subscribe(() => {});
+    return this.httpClient.delete('http://localhost:3000/quiz/'+_id).subscribe(() => {});
     // this.db.object(`quizes/${key}`).remove();
   }
 }

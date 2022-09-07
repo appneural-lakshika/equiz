@@ -53,10 +53,10 @@
             <button mat-raised-button color="primary" [routerLink]="[ '/question', element.key]">
               QUESTIONS
             </button>
-            <button mat-raised-button color="primary" [routerLink]="[ '/quiz/edit-quiz', element.key]">
+            <button mat-raised-button color="primary" [routerLink]="[ '/quiz/edit-quiz', element._id]">
               EDIT
             </button>
-            <button mat-raised-button color="warn" (click)="openDialog(element.key)">
+            <button mat-raised-button color="warn" (click)="openDialog(element._id)">
               DELETE
             </button>
           </div>

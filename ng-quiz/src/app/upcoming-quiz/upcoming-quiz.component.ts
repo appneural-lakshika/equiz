@@ -15,7 +15,9 @@ export class UpcomingQuizComponent implements OnInit {
 
   ngOnInit(): void {
     this.httpClient.get('http://localhost:3000/quiz').subscribe((data: any) => {
-      this.dataSource = data.filter((e: any) => new Date(e.datetime).getTime() > new Date().getTime());
+      // this.dataSource = data.filter((e: any) => new Date(e.datetime).getTime() > new Date().getTime());
+      this.dataSource = data.filter((e: any) => e.datetime == null);
+
     })
   }
 

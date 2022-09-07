@@ -3,15 +3,17 @@ export interface IResultLive {
     quizId: string,
     answers: [string],
     duration: Number,
-    score: Number,
+    score: Number
 }
 
 export interface IResultPractice {
-    userId: string,
+    qId: string,
     quizId: string,
     answers: [string],
+    correctAnswers: Number,
+    wrongAnswers: Number,
     duration: Number,
-    score: Number,
+    score: Number
 }
 
 

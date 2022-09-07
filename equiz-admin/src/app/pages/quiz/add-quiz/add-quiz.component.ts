@@ -22,8 +22,10 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class AddQuizComponent implements OnInit {
   quizForm: FormGroup;
-  categories: Category[];
-  languages: Language[];
+  categories: Category;
+  languages: Language;
+  submittedForm: boolean = false;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,8 +48,8 @@ export class AddQuizComponent implements OnInit {
       category: new FormControl("", [Validators.required]),
       description: [""],
       duration: new FormControl("", [
-        Validators.required,
-        Validators.pattern("^[0-9]+$")
+        // Validators.required,
+        // Validators.pattern("^[0-9]+$")
       ]),
       language: new FormControl("", [Validators.required]),
       status: new FormControl("", [Validators.required]),
@@ -68,11 +70,12 @@ export class AddQuizComponent implements OnInit {
   }
 
   onQuizFormSubmit(values): void {
+    this.submittedForm = true;
     if (this.quizForm.valid) {
       var quiz = values as Quiz;
       quiz.insertDate = new Date().toISOString();
       quiz.examCount = 0;
-      this.quizService.add(quiz);
+      this.quizService.add(values as Quiz);
       this.router.navigate(["quiz"]);
       this.snackBar.open(
         "Successfully added!",
@@ -84,5 +87,6 @@ export class AddQuizComponent implements OnInit {
 
   resetForm() {
     this.quizForm.reset();
+    
   }
 }

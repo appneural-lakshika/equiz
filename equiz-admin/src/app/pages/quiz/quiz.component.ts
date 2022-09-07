@@ -24,6 +24,8 @@ export class QuizComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   isLoading = false;
+  key: string;
+
 
   constructor(
     private quizService: QuizService,
@@ -32,6 +34,7 @@ export class QuizComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    
     this.getQuizes();
   }
 
@@ -55,6 +58,9 @@ export class QuizComponent implements OnInit {
 
       this.isLoading = true;
     });
+  }
+  addQuiz() {
+    this.router.navigateByUrl(`quiz/add-quiz/${this.key}`);
   }
 
   openDialog(key: string) {

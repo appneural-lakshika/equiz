@@ -1,5 +1,5 @@
 import { CreateResultDTO } from './../@dtos/create-result.dto';
-import { Controller, Post, Body, Get} from '@nestjs/common';
+import { Controller, Post, Body, Get, Param} from '@nestjs/common';
 
 import { ResultService } from './result.service';
 import { IResultLive } from 'src/@interface/result.interface';
@@ -12,21 +12,22 @@ export class ResultController {
 //Live result
   @Post()
   async createLiveResult(@Body() createResultDto: CreateResultDTO): Promise<IResultLive> {
+    console.log(createResultDto)
     return await this.resultService.createLiveResult(createResultDto);
   }
 
-  @Get()
-  async getLiveResult(): Promise<IResultLive[]> {
-    return await this.resultService.getLiveResult();
+  @Get(':quizId')
+  async getLiveResult(@Param('quizId') quizId: string): Promise<IResultLive[]> {
+    return await this.resultService.getLiveResult(quizId);
   }
 //practice result
-  @Post()
-  async createPracticeResult(@Body() createResultDto: CreateResultDTO[]): Promise<IResultPractice[]> {
-    return await this.resultService.createPracticeResult(createResultDto);
-  }
+  // @Post()
+  // async createPracticeResult(@Body() createResultDto: CreateResultDTO[]): Promise<IResultPractice[]> {
+  //   return await this.resultService.createPracticeResult(createResultDto);
+  // }
 
-  @Get()
-  async getPracticeResult(): Promise<IResultPractice[]> {
-    return await this.resultService.getPracticeResult();
-  }
+  // @Get()
+  // async getPracticeResult(): Promise<IResultPractice[]> {
+  //   return await this.resultService.getPracticeResult();
+  // }
 }

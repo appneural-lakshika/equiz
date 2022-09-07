@@ -26,10 +26,10 @@ export class QuizComponent implements OnInit {
 
   completedQuestions: any = {};
   // quizData
-  constructor(private _httpClient: HttpClient, private router: Router, private activeRoute: ActivatedRoute) {}
+  constructor(private _httpClient: HttpClient, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this._httpClient.get('http://localhost:3000/question/'+ this.activeRoute.snapshot.params['id']).subscribe((questions: any) => {
+    this._httpClient.get('http://localhost:3000/question/' + this.activeRoute.snapshot.params['id']).subscribe((questions: any) => {
       const data = {
         name: 'Quiz Xyz',
         questionSet: questions,
@@ -61,9 +61,10 @@ export class QuizComponent implements OnInit {
     }, 1000);
   }
 
-  selectAnswer(questionIndex: number, answer: string) {
+  selectAnswer(questionIndex: number, answer: string, qId: string) {
     if (!this.completedQuestions[questionIndex]) {
       this.completedQuestions[questionIndex] = {
+        qId,
         answer,
         duration: this.questionCountDown - this.countDown,
         isCorrect: this.quizData[questionIndex].answerRight === answer,
@@ -86,11 +87,25 @@ export class QuizComponent implements OnInit {
     console.log('reviewed')
     localStorage.setItem('completedQuestions', JSON.stringify(this.completedQuestions))
     this.router.navigate(['/review', this.activeRoute.snapshot.params['id']])
-
     setTimeout(() => {
       this.router.navigate(['/review'])
     }, 1000)
   }
 
-  getResult() {}
+  getResult() {
+    let totalDuration = 0;
+    Object.keys(this.completedQuestions).forEach((e:any) => totalDuration += this.completedQuestions[e].duration)
+    this._httpClient.post('http://localhost:3000/result', {
+      uId: '6315bd9c1967c9af029088c8',
+      quizId: this.activeRoute.snapshot.params['id'],
+      completedQuestions: this.completedQuestions,
+      correctAnswers: this.correctAnswers,
+      wrongAnswers: this.wrongAnswers,
+      marksScore: this.isMinusMarking? (this.correctAnswers - this.wrongAnswers*this.isMinusMarkingRatio)*5: this.correctAnswers*5,
+      timeScore: totalDuration,
+      score: (this.isMinusMarking? (this.correctAnswers - this.wrongAnswers*this.isMinusMarkingRatio)*5: this.correctAnswers*5)/totalDuration
+    }).subscribe((data: any) => {
+    });
+
+  }
 }

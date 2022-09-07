@@ -41,6 +41,9 @@ export class EditQuizComponent implements OnInit {
       if (data["key"]) {
         this.getQuiz(data["key"]);
         this.key = data["key"];
+        this.categoryService.get(data["key"]).subscribe((data: any) => {
+          this.createForm(data);
+        });
       }
     });
   }
@@ -71,8 +74,8 @@ export class EditQuizComponent implements OnInit {
       category: new FormControl(quiz.category, [Validators.required]),
       description: new FormControl(quiz.description),
       duration: new FormControl(quiz.duration, [
-        Validators.required,
-        Validators.pattern("^[0-9]+$")
+        // Validators.required,
+        // Validators.pattern("^[0-9]+$")
       ]),
       language: new FormControl(quiz.language, [Validators.required]),
       status: new FormControl(quiz.status, [Validators.required]),
@@ -94,5 +97,8 @@ export class EditQuizComponent implements OnInit {
         environment.snackBarConfig
       );
     }
+  }
+  resetForm() {
+    this.quizForm.reset();
   }
 }

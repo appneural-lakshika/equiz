@@ -27,15 +27,14 @@
         [value]="completedQuestions[currentQuizIndex] && completedQuestions[currentQuizIndex].answer? completedQuestions[currentQuizIndex].answer: null">
         <mat-radio-button [disabled]="completedQuestions[currentQuizIndex] && completedQuestions[currentQuizIndex].answer" class="option" [value]="option" [ngClass]="{'correct-answer': isPractice && completedQuestions[currentQuizIndex] && completedQuestions[currentQuizIndex].answer && quizData[currentQuizIndex].answerRight === option, 'wrong-answer': isPractice && completedQuestions[currentQuizIndex] && completedQuestions[currentQuizIndex].answer && quizData[currentQuizIndex].answerRight !== option}"
           *ngFor="let option of quizData[currentQuizIndex].answers"
-          (click)="!completedQuestions[currentQuizIndex]?selectAnswer(currentQuizIndex, option):''">{{option}}
+          (click)="!completedQuestions[currentQuizIndex]?selectAnswer(currentQuizIndex, option, quizData[currentQuizIndex]._id):''">{{option}}
         </mat-radio-button>
       </mat-radio-group>
 
       <mat-toolbar class="pagination" fxLayout="row" fxLayoutAlign="center center">
 
-            <button  mat-raised-button aria-label="Example icon button with a home icon">
-              Submit
-            </button>
+            <a mat-raised-button aria-label="Example icon button with a home icon" (click)="getResult()">  Submit </a> 
+            
             <button  mat-raised-button aria-label="Example icon button with a home icon" (click)="review()" >
               Review
             </button>
