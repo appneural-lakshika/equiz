@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class QuizComponent implements OnInit {
   quizLoaded = false;
   name = 'Quiz';
+  quiz: any;
   currentQuizIndex = 0;
   page = 0;
   noOfQuestionsOnPage = 5;
@@ -25,31 +26,38 @@ export class QuizComponent implements OnInit {
   quizData: any = [];
 
   completedQuestions: any = {};
+  isSubmitted = false;
+
   // quizData
   constructor(private _httpClient: HttpClient, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this._httpClient.get('http://localhost:3000/question/' + this.activeRoute.snapshot.params['id']).subscribe((questions: any) => {
-      const data = {
-        name: 'Quiz Xyz',
-        questionSet: questions,
-        questionCountDown: 60,
-        // isPractice: scheduleDate ? true : false,
-        perQuestionMarks: 5,
-        isMinusMarking: true,
-        isMinusMarkingRatio: 1 / 3,
-      };
-      this.name = data.name;
-      this.quizData = questions;
-      this.questionCountDown = data.questionCountDown;
-      this.isPractice = true;
-      this.perQuestionMarks = data.perQuestionMarks;
-      this.isMinusMarking = data.isMinusMarking;
-      this.isMinusMarkingRatio = data.isMinusMarkingRatio;
-      this.quizLoaded = true;
+    this._httpClient.get('http://localhost:3000/quiz/' + this.activeRoute.snapshot.params['id']).subscribe((quiz: any) => {
+      this.quiz = quiz;
+      this._httpClient.get('http://localhost:3000/question/' + this.activeRoute.snapshot.params['id']).subscribe((questions: any) => {
+        const data = {
+          name: quiz.title,
+          questionSet: questions,
+          questionCountDown: 60,
+          // isPractice: scheduleDate ? true : false,
+          perQuestionMarks: 5,
+          isMinusMarking: true,
+          isMinusMarkingRatio: 1 / 3,
+        };
+        this.name = data.name;
+        this.quizData = questions;
+        this.questionCountDown = data.questionCountDown;
+        this.isPractice = true;
+        this.perQuestionMarks = data.perQuestionMarks;
+        this.isMinusMarking = data.isMinusMarking;
+        this.isMinusMarkingRatio = data.isMinusMarkingRatio;
+        this.quizLoaded = true;
+      });
     });
 
-    setInterval(() => {
+
+
+    const interval = setInterval(() => {
       this.countDown--;
       if (this.countDown === 0) {
         this.countDown = this.questionCountDown;
@@ -57,6 +65,9 @@ export class QuizComponent implements OnInit {
         this.currentQuizIndex % this.noOfQuestionsOnPage == 0
           ? (this.page = this.currentQuizIndex / this.noOfQuestionsOnPage)
           : '';
+      }
+      if(this.quizData.length === this.currentQuizIndex) {
+        clearInterval(interval)
       }
     }, 1000);
   }
@@ -94,9 +105,10 @@ export class QuizComponent implements OnInit {
 
   getResult() {
     let totalDuration = 0;
+    this.isSubmitted = true
     Object.keys(this.completedQuestions).forEach((e:any) => totalDuration += this.completedQuestions[e].duration)
     this._httpClient.post('http://localhost:3000/result', {
-      uId: '6315bd9c1967c9af029088c8',
+      uId: '631863b6884667b2b690c3d9',
       quizId: this.activeRoute.snapshot.params['id'],
       completedQuestions: this.completedQuestions,
       correctAnswers: this.correctAnswers,

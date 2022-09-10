@@ -13,9 +13,14 @@ export class QuizController {
     return await this.quizService.createQuiz(createQuizDto);
   }
 
+  @Get(':id')
+  async getQuiz(@Param('id') id: string): Promise<IQuiz> {
+    return await this.quizService.getQuiz(id);
+  }
+
   @Get()
-  async getQuiz(): Promise<IQuiz[]> {
-    return await this.quizService.getQuiz();
+  async getQuizes(): Promise<IQuiz[]> {
+    return await this.quizService.getQuizes();
   }
 
   @Put('/:id')

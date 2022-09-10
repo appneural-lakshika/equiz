@@ -8,7 +8,6 @@ import { Model } from 'mongoose';
 @Injectable()
 export class ResultService {constructor(
     @InjectModel('Live-Result') private readonly liveResultModel: Model<IResultLive>,
-    @InjectModel('Practice-Result') private readonly practiceResultModel: Model<IResultLive>,
   ) {
 
   }
@@ -21,7 +20,14 @@ export class ResultService {constructor(
   }
 
   async getLiveResult(quizId): Promise<IResultLive[]> {
-    const result = await this.liveResultModel.find({quizId}).sort({'score':-1}).populate(['uId', 'quizId']);
+    const result = await this.liveResultModel.find({quizId}).sort({'score':-1});
+    return new Promise((resolve) => {
+      resolve(result);
+    });
+  }
+
+  async getResults(): Promise<IResultLive[]> {
+    const result = await this.liveResultModel.find({}).sort();
     return new Promise((resolve) => {
       resolve(result);
     });

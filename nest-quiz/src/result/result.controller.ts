@@ -20,6 +20,11 @@ export class ResultController {
   async getLiveResult(@Param('quizId') quizId: string): Promise<IResultLive[]> {
     return await this.resultService.getLiveResult(quizId);
   }
+
+  @Get()
+  async getResults(): Promise<IResultLive[]> {
+    return await this.resultService.getResults();
+  }
 //practice result
   // @Post()
   // async createPracticeResult(@Body() createResultDto: CreateResultDTO[]): Promise<IResultPractice[]> {

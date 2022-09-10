@@ -12,21 +12,19 @@ export class QuestionService {
   constructor(private db: AngularFireDatabase, private httpClient: HttpClient) {}
 
   add(quizKey: string, question: Question) {
-
     // this.db.list(`quizes/${quizKey}/questions/`).push(question);
-    this.httpClient.post('http://localhost:3000/question', question).subscribe((data: any) => {
-  
+    this.httpClient.post('http://localhost:3000/question/'+ quizKey, question).subscribe((data: any) => {
     })
   }
 
   get(quizKey: string, key: string) {
-    return this.httpClient.get('http://localhost:3000/question');
+    return this.httpClient.get('http://localhost:3000/question/'+ quizKey);
     // return mapToModel(
       // this.db.list<Question>(`quizes/${quizKey}/questions`).snapshotChanges()
   }
 
   getAll(quizKey: string) {
-    return this.httpClient.get('http://localhost:3000/question');
+    return this.httpClient.get('http://localhost:3000/question/'+ quizKey);
     // return mapToModel(
       // this.db.list<Question>(`quizes/${quizKey}/questions`).snapshotChanges()
   }

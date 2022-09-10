@@ -1,6 +1,8 @@
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AppService } from '../app.service';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -17,9 +19,20 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class UserSignupComponent implements OnInit {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-
+  data = {name: 'Ajay', email: 'xyz'};
   matcher = new MyErrorStateMatcher();
-  constructor() { }
+  constructor(
+    public appService:AppService
+    // public dialogRef: MatDialogRef<UserSignupComponent>,
+    // @Inject(MAT_DIALOG_DATA) public data: any,
+  ) {}
+
+  onNoClick(name: any, email: any): void {
+      console.log(name, email)
+      localStorage.setItem('loggedIn', JSON.stringify({name, email}))
+      this.appService.login();
+    // this.dialogRef.close();
+  }
 
   ngOnInit(): void {
   }

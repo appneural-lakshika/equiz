@@ -6,21 +6,23 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class QuizService {
-constructor(
-    @InjectModel('Quiz') private readonly quizModel: Model<IQuiz>,
-  ) {
+  constructor(@InjectModel('Quiz') private readonly quizModel: Model<IQuiz>) {}
 
-  }
-
-
-async createQuiz(createQuizDTO: CreateQuizDTO): Promise<IQuiz> {
+  async createQuiz(createQuizDTO: CreateQuizDTO): Promise<IQuiz> {
     const createdData = await new this.quizModel(createQuizDTO).save();
     return new Promise((resolve) => {
       resolve(createdData);
     });
   }
 
-  async getQuiz(): Promise<IQuiz[]> {
+  async getQuiz(_id: string): Promise<IQuiz> {
+    const quiz = await this.quizModel.findOne({ _id });
+    return new Promise((resolve) => {
+      resolve(quiz);
+    });
+  }
+
+  async getQuizes(): Promise<IQuiz[]> {
     const quiz = await this.quizModel.find();
     return new Promise((resolve) => {
       resolve(quiz);
@@ -40,5 +42,4 @@ async createQuiz(createQuizDTO: CreateQuizDTO): Promise<IQuiz> {
       resolve(quiz);
     });
   }
-
 }

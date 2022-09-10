@@ -32,10 +32,9 @@
       </mat-radio-group>
 
       <mat-toolbar class="pagination" fxLayout="row" fxLayoutAlign="center center">
-
-            <a mat-raised-button aria-label="Example icon button with a home icon" (click)="getResult()">  Submit </a> 
-            
-            <button  mat-raised-button aria-label="Example icon button with a home icon" (click)="review()" >
+        <!-- {{isSubmitted}} -->
+            <a mat-raised-button aria-label="Example icon button with a home icon" *ngIf="(quizData.length-1) === currentQuizIndex && !isSubmitted" (click)="getResult()">  Submit </a>
+            <button  mat-raised-button aria-label="Example icon button with a home icon" *ngIf="(quizData.length-1) === currentQuizIndex && isSubmitted" (click)="review()" >
               Review
             </button>
 

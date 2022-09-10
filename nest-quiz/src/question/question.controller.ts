@@ -11,6 +11,7 @@ export class QuestionController {
 
   @Post('/:id')
   async createquestion(@Param('id') id: string, @Body() createQuestionDto: CreateQuestionDTO): Promise<IQuestion> {
+    createQuestionDto.quizId = id;
     return await this.questionService.createQuestion(createQuestionDto);
   }
 

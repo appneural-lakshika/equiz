@@ -1,4 +1,17 @@
-<mat-toolbar>
-  <span>NAME: Ajay Prajapat</span>
-  <button mat-button>logout</button>
-</mat-toolbar>
+
+
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your name</mat-label>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your email</mat-label>
+    <input matInput [(ngModel)]="data.email">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="onNoClick(data.name, data.email)">Sign In</button>
+  <!-- <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Ok</button> -->
+</div>
