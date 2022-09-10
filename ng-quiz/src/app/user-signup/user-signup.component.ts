@@ -19,7 +19,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class UserSignupComponent implements OnInit {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  data = {name: 'Ajay', email: 'xyz'};
+  data = {name: 'Ajay', email: 'xyz@gmail.com'};
   matcher = new MyErrorStateMatcher();
   constructor(
     public appService:AppService

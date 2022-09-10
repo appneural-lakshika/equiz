@@ -15,7 +15,7 @@ import { PracticeQuizComponent } from './practice-quiz/practice-quiz.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'quiz-selection',
+    redirectTo: 'leaderboard',
     pathMatch: 'full'
   },
   {

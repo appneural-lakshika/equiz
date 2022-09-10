@@ -14,16 +14,18 @@
           <td mat-cell *matCellDef="let element"> {{element.title}} </td>
         </ng-container>
 
-        <!-- Time Column -->
+
+
+        <!-- CatName Column -->
         <ng-container matColumnDef="time">
-          <th class="example-label" mat-header-cell *matHeaderCellDef> STARTING TIME </th>
-          <td mat-cell *matCellDef="let element"> {{element.datetime}} </td>
+          <th class="example-label" mat-header-cell *matHeaderCellDef> CATEGORY </th>
+          <td mat-cell *matCellDef="let element"> {{element.category}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef> LINK</th>
-          <td mat-cell *matCellDef="let element" [routerLink]="['/quiz', element._id]"> Link </td>
+          <th mat-header-cell *matHeaderCellDef> Start</th>
+          <td mat-cell *matCellDef="let element" [routerLink]="['/quiz', element._id]"> <button class="bg-blue-600 hover:bg-blue-800 text-white  px-2 rounded">Start</button> </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

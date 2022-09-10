@@ -10,13 +10,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class QuizComponent implements OnInit {
   quizLoaded = false;
   name = 'Quiz';
+  category = '';
   quiz: any;
   currentQuizIndex = 0;
   page = 0;
   noOfQuestionsOnPage = 5;
   questionCountDown = 60;
   countDown = this.questionCountDown;
-  isPractice = true;
+  isPractice = false;
   correctAnswers = 0;
   wrongAnswers = 0;
   perQuestionMarks = 5;
@@ -45,9 +46,10 @@ export class QuizComponent implements OnInit {
           isMinusMarkingRatio: 1 / 3,
         };
         this.name = data.name;
+        this.category = quiz.category;
         this.quizData = questions;
         this.questionCountDown = data.questionCountDown;
-        this.isPractice = true;
+        this.isPractice = false;
         this.perQuestionMarks = data.perQuestionMarks;
         this.isMinusMarking = data.isMinusMarking;
         this.isMinusMarkingRatio = data.isMinusMarkingRatio;
