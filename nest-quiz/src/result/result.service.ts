@@ -6,21 +6,35 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 @Injectable()
-export class ResultService {constructor(
-    @InjectModel('Live-Result') private readonly liveResultModel: Model<IResultLive>,
-  ) {
-
-  }
-//live result
-  async createLiveResult(createResultDTO: CreateResultDTO): Promise<IResultLive> {
+export class ResultService {
+  constructor(
+    @InjectModel('Live-Result')
+    private readonly liveResultModel: Model<IResultLive>,
+  ) {}
+  //live result
+  async createLiveResult(
+    createResultDTO: CreateResultDTO,
+  ): Promise<IResultLive> {
     const createdData = await new this.liveResultModel(createResultDTO).save();
     return new Promise((resolve) => {
       resolve(createdData);
     });
   }
 
-  async getLiveResult(quizId): Promise<IResultLive[]> {
-    const result = await this.liveResultModel.find({quizId}).sort({'score':-1});
+  async getLiveResult(quizId, onlyResult): Promise<IResultLive[]> {
+    let result;
+    if (onlyResult) {
+      result = await this.liveResultModel
+        .find({ _id: quizId })
+        .sort({ score: -1 })
+        .populate(['quizId', 'uId']);
+    } else {
+      result = await this.liveResultModel
+        .find({ quizId })
+        .sort({ score: -1 })
+        .populate(['quizId', 'uId']);
+    }
+
     return new Promise((resolve) => {
       resolve(result);
     });

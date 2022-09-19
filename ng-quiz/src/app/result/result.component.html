@@ -39,31 +39,34 @@
   <span >Result</span>
 </mat-toolbar>
 
-<div class="main-coontainer">
+<div class="main-coontainer" *ngIf="result">
     <div class="small-container flex flex-col space-y-12">
         <div class="flex ">
             <h2>
-                Username:
+                Username: {{result.uId.name}}
             </h2>
 
         </div>
        <div class="flex">
         <h2>
-            QuizName:
+            QuizName: {{result.quizId.category}} - {{result.quizId.title}}
         </h2>
 
        </div>
        <div class="flex">
         <h2>
-            Duration:
+            Duration: {{result.timeScore}} Seconds
         </h2>
        </div>
        <div class="flex">
         <h2>
-            Marks:
+            Marks: {{result.score}}
         </h2>
        </div>
-       <div class="total">Total Score:</div>
+       <div>
+        <!-- Total Score: {{result.isMinusMarking? (result.correctAnswers - result.wrongAnswers*result.isMinusMarkingRatio): result.correctAnswers}} -->
+        <!-- Performance Score: {{}} -->
+      </div>
     </div>
 
 </div>

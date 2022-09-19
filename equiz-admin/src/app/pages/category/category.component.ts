@@ -15,7 +15,7 @@ import { ConfirmModalComponent } from "src/app/shared/components/confirm-modal/c
 })
 export class CategoryComponent implements OnInit {
   category: Category[];
-  displayedColumns: string[] = ["number", "name", "status", "key"];
+  displayedColumns: string[] = ["number", "name", "key"];
   dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;

@@ -1,5 +1,5 @@
 <mat-toolbar *ngIf="appService.isLoggedIn">
   <!-- <button mat-button mat-dialog-close>Close</button> -->
-  <span>NAME: Ajay Prajapat</span>
+  <span>NAME: {{this.appService.isLoggedIn.name}} </span>
   <button class="button" mat-button (click)="logout()">logout</button>
 </mat-toolbar>

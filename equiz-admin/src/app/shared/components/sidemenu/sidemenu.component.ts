@@ -32,47 +32,47 @@ export class SidemenuComponent implements OnInit {
       link: "/user",
       icon: "people"
     },
-    {
-      label: "Exams History",
-      link: "/exam",
-      icon: "history"
-    },
-    {
-      label: "Push Notification",
-      link: "/push",
-      icon: "notifications"
-    },
-    {
-      label: "Contacts",
-      link: "/contact",
-      icon: "email"
-    },
-    {
-      label: "Customize",
-      icon: "apps",
-      items: [
-        {
-          label: "About Us",
-          link: "/about",
-          icon: "information"
-        },
-        {
-          label: "Languages",
-          link: "/language",
-          icon: "language"
-        }
-      ]
-    },
-    {
-      label: "Account",
-      link: "/account",
-      icon: "account_circle"
-    },
-    {
-      label: "404 Page",
-      link: "/not-found",
-      icon: "error"
-    },
+    // {
+    //   label: "Exams History",
+    //   link: "/exam",
+    //   icon: "history"
+    // },
+    // {
+    //   label: "Push Notification",
+    //   link: "/push",
+    //   icon: "notifications"
+    // },
+    // {
+    //   label: "Contacts",
+    //   link: "/contact",
+    //   icon: "email"
+    // },
+    // {
+    //   label: "Customize",
+    //   icon: "apps",
+    //   items: [
+    //     {
+    //       label: "About Us",
+    //       link: "/about",
+    //       icon: "information"
+    //     },
+    //     {
+    //       label: "Languages",
+    //       link: "/language",
+    //       icon: "language"
+    //     }
+    //   ]
+    // },
+    // {
+    //   label: "Account",
+    //   link: "/account",
+    //   icon: "account_circle"
+    // },
+    // {
+    //   label: "404 Page",
+    //   link: "/not-found",
+    //   icon: "error"
+    // },
     {
       label: "Logout",
       link: "/logout",

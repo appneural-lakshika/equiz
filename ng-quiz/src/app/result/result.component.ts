@@ -9,13 +9,20 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit {
+  isMinusMarking = true;
+  correctAnswers = 0;
+  wrongAnswers = 0;
+  isMinusMarkingRatio = 1 / 3;
+  result: any = null
 
-  constructor(private _httpClient: HttpClient, private router: Router, private activeRoute: ActivatedRoute) {}
-  
+
+  constructor( private _httpClient: HttpClient, private router: Router, private activeRoute: ActivatedRoute) {}
+
 
   ngOnInit(): void {
-    this._httpClient.get('http://localhost:3000/result/'+ this.activeRoute.snapshot.params['id']).subscribe((result: any) => {
-      console.log(result)
+    this._httpClient.get('http://localhost:3000/result/'+ this.activeRoute.snapshot.params['id'] + '?onlyResult=true').subscribe((result: any) => {
+      this.result = result[0]
+      // console.log(≈)
       // this.quizData = questions;
     });
   }

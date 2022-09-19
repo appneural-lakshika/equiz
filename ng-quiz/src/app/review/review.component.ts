@@ -16,11 +16,18 @@ export class ReviewComponent implements OnInit {
 
   constructor(private _httpClient: HttpClient, private router: Router, private activeRoute: ActivatedRoute) {}
 
+  result() {
+    console.log('reviewed')
+    // localStorage.setItem('completedQuestions', JSON.stringify(this.completedQuestions))
+    this.router.navigate(['/result', this.activeRoute.snapshot.params['i']])
+  }
+
   ngOnInit(): void {
     this._httpClient.get('http://localhost:3000/question/'+ this.activeRoute.snapshot.params['id']).subscribe((questions: any) => {
       console.log(questions)
       this.quizData = questions;
     });
+
     console.log(JSON.parse(localStorage.getItem('completedQuestions') || ''))
     this.completedQuestions = JSON.parse(localStorage.getItem('completedQuestions') || '')
   }

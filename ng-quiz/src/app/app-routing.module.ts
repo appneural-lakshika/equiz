@@ -18,10 +18,10 @@ const routes: Routes = [
     redirectTo: 'leaderboard',
     pathMatch: 'full'
   },
-  {
-    path: 'quiz-selection',
-    component: QuizSelectionComponent,
-  },
+  // {
+  //   path: 'quiz-selection',
+  //   component: QuizSelectionComponent,
+  // },
   {
     path: 'quiz/:id',
     component: QuizComponent,
@@ -30,38 +30,38 @@ const routes: Routes = [
     path: 'practice-quiz',
     component: PracticeQuizComponent,
   },
+  // {
+  //   path: 'quiz/create-quiz',
+  //   component: CreateQuizComponent,
+  // },
+  // {
+  //   path: 'quiz/create-subject-topic',
+  //   component: CreateSubjectTopicComponent,
+  // },
+  // {
+  //   path: 'quiz/create-subject',
+  //   component: CreateSubjectComponent,
+  // },
   {
-    path: 'quiz/create-quiz',
-    component: CreateQuizComponent,
-  },
-  {
-    path: 'quiz/create-subject-topic',
-    component: CreateSubjectTopicComponent,
-  },
-  {
-    path: 'quiz/create-subject',
-    component: CreateSubjectComponent,
-  },
-  {
-    path: 'review/:id',
+    path: 'review/:id/:i',
     component: ReviewComponent,
   },
   {
-    path: 'result',
+    path: 'result/:id',
     component: ResultComponent,
   },
-  {
-    path: 'upcoming-quiz',
-    component: UpcomingQuizComponent,
-  },
+  // {
+  //   path: 'upcoming-quiz',
+  //   component: UpcomingQuizComponent,
+  // },
   {
     path: 'leaderboard',
     component: LeaderboardComponent,
   },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-  },
+  // {
+  //   path: 'dashboard',
+  //   component: DashboardComponent,
+  // },
 ];
 
 

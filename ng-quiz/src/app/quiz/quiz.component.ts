@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-quiz',
@@ -29,35 +30,49 @@ export class QuizComponent implements OnInit {
   completedQuestions: any = {};
   isSubmitted = false;
 
+  resultId = null;
+
   // quizData
-  constructor(private _httpClient: HttpClient, private router: Router, private activeRoute: ActivatedRoute) { }
+  constructor(
+    private _httpClient: HttpClient,
+    private router: Router,
+    private activeRoute: ActivatedRoute,
+    private appService: AppService
+  ) {}
 
   ngOnInit(): void {
-    this._httpClient.get('http://localhost:3000/quiz/' + this.activeRoute.snapshot.params['id']).subscribe((quiz: any) => {
-      this.quiz = quiz;
-      this._httpClient.get('http://localhost:3000/question/' + this.activeRoute.snapshot.params['id']).subscribe((questions: any) => {
-        const data = {
-          name: quiz.title,
-          questionSet: questions,
-          questionCountDown: 60,
-          // isPractice: scheduleDate ? true : false,
-          perQuestionMarks: 5,
-          isMinusMarking: true,
-          isMinusMarkingRatio: 1 / 3,
-        };
-        this.name = data.name;
-        this.category = quiz.category;
-        this.quizData = questions;
-        this.questionCountDown = data.questionCountDown;
-        this.isPractice = false;
-        this.perQuestionMarks = data.perQuestionMarks;
-        this.isMinusMarking = data.isMinusMarking;
-        this.isMinusMarkingRatio = data.isMinusMarkingRatio;
-        this.quizLoaded = true;
+    this._httpClient
+      .get(
+        'http://localhost:3000/quiz/' + this.activeRoute.snapshot.params['id']
+      )
+      .subscribe((quiz: any) => {
+        this.quiz = quiz;
+        this._httpClient
+          .get(
+            'http://localhost:3000/question/' +
+              this.activeRoute.snapshot.params['id']
+          )
+          .subscribe((questions: any) => {
+            const data = {
+              name: quiz.title,
+              questionSet: questions,
+              questionCountDown: 60,
+              // isPractice: scheduleDate ? true : false,
+              perQuestionMarks: 5,
+              isMinusMarking: true,
+              isMinusMarkingRatio: 1 / 3,
+            };
+            this.name = data.name;
+            this.category = quiz.category;
+            this.quizData = questions;
+            this.questionCountDown = data.questionCountDown;
+            this.isPractice = false;
+            this.perQuestionMarks = data.perQuestionMarks;
+            this.isMinusMarking = data.isMinusMarking;
+            this.isMinusMarkingRatio = data.isMinusMarkingRatio;
+            this.quizLoaded = true;
+          });
       });
-    });
-
-
 
     const interval = setInterval(() => {
       this.countDown--;
@@ -68,8 +83,8 @@ export class QuizComponent implements OnInit {
           ? (this.page = this.currentQuizIndex / this.noOfQuestionsOnPage)
           : '';
       }
-      if(this.quizData.length === this.currentQuizIndex) {
-        clearInterval(interval)
+      if (this.quizData.length === this.currentQuizIndex) {
+        clearInterval(interval);
       }
     }, 1000);
   }
@@ -97,29 +112,45 @@ export class QuizComponent implements OnInit {
   }
 
   review() {
-    console.log('reviewed')
-    localStorage.setItem('completedQuestions', JSON.stringify(this.completedQuestions))
-    this.router.navigate(['/review', this.activeRoute.snapshot.params['id']])
-    setTimeout(() => {
-      this.router.navigate(['/review'])
-    }, 1000)
+    console.log('reviewed');
+    localStorage.setItem(
+      'completedQuestions',
+      JSON.stringify(this.completedQuestions)
+    );
+    this.router.navigate(['/review', this.activeRoute.snapshot.params['id'], this.resultId]);
+    // setTimeout(() => {
+    //   this.router.navigate(['/review'])
+    // }, 1000)
   }
 
   getResult() {
     let totalDuration = 0;
-    this.isSubmitted = true
-    Object.keys(this.completedQuestions).forEach((e:any) => totalDuration += this.completedQuestions[e].duration)
-    this._httpClient.post('http://localhost:3000/result', {
-      uId: '631863b6884667b2b690c3d9',
-      quizId: this.activeRoute.snapshot.params['id'],
-      completedQuestions: this.completedQuestions,
-      correctAnswers: this.correctAnswers,
-      wrongAnswers: this.wrongAnswers,
-      marksScore: this.isMinusMarking? (this.correctAnswers - this.wrongAnswers*this.isMinusMarkingRatio)*5: this.correctAnswers*5,
-      timeScore: totalDuration,
-      score: (this.isMinusMarking? (this.correctAnswers - this.wrongAnswers*this.isMinusMarkingRatio)*5: this.correctAnswers*5)/totalDuration
-    }).subscribe((data: any) => {
-    });
-
+    this.isSubmitted = true;
+    Object.keys(this.completedQuestions).forEach(
+      (e: any) => (totalDuration += this.completedQuestions[e].duration)
+    );
+    this._httpClient
+      .post('http://localhost:3000/result', {
+        uId: this.appService.isLoggedIn._id,
+        quizId: this.activeRoute.snapshot.params['id'],
+        completedQuestions: this.completedQuestions,
+        correctAnswers: this.correctAnswers,
+        wrongAnswers: this.wrongAnswers,
+        marksScore: this.isMinusMarking
+          ? (this.correctAnswers -
+              this.wrongAnswers * this.isMinusMarkingRatio) *
+            5
+          : this.correctAnswers * 5,
+        timeScore: totalDuration,
+        score:
+          (this.isMinusMarking
+            ? (this.correctAnswers -
+                this.wrongAnswers * this.isMinusMarkingRatio) *
+              5
+            : this.correctAnswers * 5) / totalDuration,
+      })
+      .subscribe((data: any) => {
+        this.resultId = data._id;
+      });
   }
 }

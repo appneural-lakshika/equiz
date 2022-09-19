@@ -1,7 +1,7 @@
 <mat-toolbar class="justify-center text-4xl" color="primary">
   <span >Review</span>
 </mat-toolbar>
-<span  a routerLink="/result"><button class="bg-red-600 hover:bg-red-800 text-black  px-4 py-3 rounded">Result</button></span>
+<div class="button"><span><button (click)="result()" class=" flex items-center bg-black hover:bg-gray-500 text-white  px-4 py-3 rounded">Result</button></span></div>
 <div *ngIf="quizData && completedQuestions">
   <div class="quiz-container" fxLayout="row" fxLayoutAlign="start center" *ngFor="let question of quizData; let currentQuizIndex = index;">
     <div >

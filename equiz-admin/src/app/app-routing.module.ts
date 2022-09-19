@@ -133,11 +133,11 @@ const routes: Routes = [
     component: ExamDetailComponent,
     // canActivate: [AuthGuard]
   },
-  {
-    path: "account",
-    component: AccountComponent,
-    // canActivate: [AuthGuard]
-  },
+  // {
+  //   path: "account",
+  //   component: AccountComponent,
+  //   // canActivate: [AuthGuard]
+  // },
   {
     path: "push",
     component: PushComponent,

@@ -19,7 +19,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class UserSignupComponent implements OnInit {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  data = {name: 'Ajay', email: 'xyz@gmail.com'};
+  data = {name: 'Lakshika', email: 'lakshika@appneural.com'};
   matcher = new MyErrorStateMatcher();
   constructor(
     public appService:AppService
@@ -29,8 +29,7 @@ export class UserSignupComponent implements OnInit {
 
   onNoClick(name: any, email: any): void {
       console.log(name, email)
-      localStorage.setItem('loggedIn', JSON.stringify({name, email}))
-      this.appService.login();
+      this.appService.login({name, email});
     // this.dialogRef.close();
   }
 
